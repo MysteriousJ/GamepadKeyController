@@ -1,0 +1,101 @@
+#include <windows.h>
+#include <commctrl.h>
+#include <richedit.h>
+#include "resource.h"
+
+
+LANGUAGE 0, SUBLANG_NEUTRAL
+
+////// Icon //////////////////
+
+GAMEPADKEYCONTROLLER		ICON		"Gamepad Key controller icon.ico"
+
+////// Menu //////////////////
+
+MAINMENU MENU
+{
+	POPUP "File"
+	{
+		MENUITEM "Save Configuration"			IDM_SAVE
+		MENUITEM "Load Configuration"			IDM_LOAD
+	}
+	POPUP "Settings"
+	{
+		MENUITEM "Active"						IDM_ACTIVE,			CHECKED
+		MENUITEM "Resolution"					IDM_RESOLUTION
+		MENUITEM "Switch Gamepad"				IDM_SWITCHGAMEPAD
+	}
+	POPUP "Information"
+	{
+		MENUITEM "About"						IDM_ABOUT
+	}
+}
+
+////// Dialog resources //////
+
+// menu dialogs
+IDD_RESOLUTION DIALOG 0, 0, 173, 27
+STYLE DS_3DLOOK | DS_CENTER | DS_MODALFRAME | DS_SHELLFONT | WS_CAPTION | WS_VISIBLE | WS_POPUP | WS_SYSMENU
+CAPTION "Resolution"
+FONT 8, "Ms Shell Dlg"
+{
+    DEFPUSHBUTTON   "OK", IDOK, 128, 7, 31, 14
+    LTEXT           "Gamepad polls per second:", IDC_STATIC, 9, 10, 87, 8, SS_LEFT
+    EDITTEXT        IDC_POLLSPERSECOND, 99, 8, 18, 12, ES_AUTOHSCROLL
+}
+
+
+// button and axis setting dialogs
+IDD_BUTTONKEYPRESS DIALOG 0, 0, 145, 35
+STYLE DS_3DLOOK | DS_CENTER | DS_MODALFRAME | DS_SHELLFONT | WS_CAPTION | WS_VISIBLE | WS_POPUP | WS_SYSMENU
+CAPTION "Key press settings"
+FONT 8, "Ms Shell Dlg"
+{
+    DEFPUSHBUTTON   "OK", IDOK, 98, 11, 33, 14
+    CONTROL         "", IDC_HOTKEY, HOTKEY_CLASS, WS_TABSTOP, 50, 12, 40, 12
+    LTEXT           "Press key:", IDC_STATIC, 14, 14, 34, 8, SS_LEFT
+}
+
+
+IDD_AXISMOVEMOUSE DIALOG 0, 0, 251, 80
+STYLE DS_3DLOOK | DS_CENTER | DS_MODALFRAME | DS_SHELLFONT | WS_CAPTION | WS_VISIBLE | WS_POPUP | WS_SYSMENU
+CAPTION "Move mouse settings"
+FONT 8, "Ms Shell Dlg"
+{
+    DEFPUSHBUTTON   "OK", IDOK, 139, 59, 50, 14
+    PUSHBUTTON      "Cancel", IDCANCEL, 193, 59, 50, 14
+
+    GROUPBOX        "Negative", IDC_STATIC, 10, 10, 57, 63
+	AUTORADIOBUTTON "Left", IDC_NLEFT, 20, 25, 28, 8, WS_GROUP
+    AUTORADIOBUTTON "Right", IDC_NRIGHT, 20, 36, 33, 8
+    AUTORADIOBUTTON "Up", IDC_NUP, 20, 47, 25, 8
+    AUTORADIOBUTTON "Down", IDC_NDOWN, 20, 58, 35, 8
+
+    GROUPBOX        "Positive", IDC_STATIC, 75, 10, 56, 63
+    AUTORADIOBUTTON "Left", IDC_PLEFT, 85, 25, 28, 8, WS_GROUP
+    AUTORADIOBUTTON "Right", IDC_PRIGHT, 85, 36, 33, 8
+    AUTORADIOBUTTON "Up", IDC_PUP, 85, 47, 25, 8
+    AUTORADIOBUTTON "Down", IDC_PDOWN, 85, 58, 35, 8
+
+	LTEXT           "Max Pixels per second:", IDC_STATIC, 135, 13, 74, 8, SS_LEFT
+    EDITTEXT        IDC_PIXELSPERSECOND, 213, 11, 28, 12, ES_AUTOHSCROLL
+	LTEXT           "Sensitivity:", IDC_STATIC, 174, 28, 34, 8, SS_LEFT
+    EDITTEXT        IDC_SENSITIVITY, 213, 27, 21, 12, ES_AUTOHSCROLL
+	LTEXT           "Threshold:", IDC_STATIC, 174, 44, 34, 8, SS_LEFT
+    EDITTEXT        IDC_THRESHOLD, 213, 43, 32, 12, ES_AUTOHSCROLL
+}
+
+IDD_AXISKEYPRESS DIALOG 0, 0, 163, 47
+STYLE DS_3DLOOK | DS_CENTER | DS_MODALFRAME | DS_SHELLFONT | WS_CAPTION | WS_VISIBLE | WS_POPUP | WS_SYSMENU
+CAPTION "Key press settings"
+FONT 8, "Ms Shell Dlg"
+{
+    DEFPUSHBUTTON   "OK", IDOK, 80, 24, 30, 14
+    PUSHBUTTON      "Cancel", IDCANCEL, 114, 24, 40, 14
+    LTEXT           "Negative:", IDC_STATIC, 7, 9, 32, 8, SS_LEFT
+    LTEXT           "Positive:", IDC_STATIC, 84, 9, 28, 8, SS_LEFT
+    CONTROL         "", IDC_NHOTKEY, HOTKEY_CLASS, WS_TABSTOP, 42, 7, 33, 12
+    CONTROL         "", IDC_PHOTKEY, HOTKEY_CLASS, WS_TABSTOP, 114, 7, 33, 12
+    LTEXT           "Threshold:", IDC_STATIC, 6, 27, 34, 8, SS_LEFT
+    EDITTEXT        IDC_THRESHOLD, 42, 25, 33, 12, ES_AUTOHSCROLL
+}
